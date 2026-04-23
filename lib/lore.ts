@@ -9,9 +9,31 @@ const contentDirectory = path.join(process.cwd(), 'content')
 export interface LoreFrontmatter {
   title: string
   category: string
-  series?: string
+  series: string
+  type: string
   tags?: string[]
   spoilerFree?: boolean
+  pronunciation?: string
+
+  // People
+  race?: string
+  ethnicity?: string
+  nation?: string
+  affiliation?: string[]
+  elements?: string[]
+
+  // Elements
+  deity?: string
+
+  // Holy/Unholy Beings
+  tier?: string
+  element?: string
+  parent?: string
+
+  // Nations
+  ruler?: string
+  primaryRace?: string
+  region?: string
 }
 
 export interface LoreEntry {
