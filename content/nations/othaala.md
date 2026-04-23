@@ -5,7 +5,7 @@ series: "all"
 type: "Nation"
 ruler: "Queen Namerethe"
 primaryRace: "Elves"
-region: "Baodia"
+region: "Central and Southwestern Alatrya"
 tags: ["nation", "elven"]
 spoilerFree: true
 ---

@@ -1,26 +1,420 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette */
+  --navy-deepest: #0d0d1a;
+  --navy-deep: #1a1a2e;
+  --navy-mid: #232340;
+  --navy-light: #2e2e5a;
+  --navy-muted: #3a3a6e;
+
+  --gold-bright: #f0c060;
+  --gold-mid: #d4af6a;
+  --gold-warm: #b8923a;
+  --gold-dim: #8a6a28;
+  --gold-faint: #2a1f0a;
+
+  --cream: #f5f0e8;
+  --cream-dim: #d8d0c0;
+  --cream-muted: #9a9080;
+
+  --red-accent: #8b2020;
+  --red-bright: #c44040;
+
+  /* Semantic */
+  --bg: var(--navy-deep);
+  --bg-card: var(--navy-mid);
+  --bg-elevated: var(--navy-light);
+  --border: rgba(212, 175, 106, 0.2);
+  --border-bright: rgba(212, 175, 106, 0.5);
+  --text-primary: var(--cream);
+  --text-secondary: var(--cream-dim);
+  --text-muted: var(--cream-muted);
+  --accent: var(--gold-mid);
+  --accent-bright: var(--gold-bright);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base ─────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--navy-deep);
+  color: var(--cream);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+  /* Subtle star-field noise texture */
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(100, 80, 180, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(180, 120, 40, 0.06) 0%, transparent 50%);
+}
+
+/* ─── Typography ────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--gold-mid);
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
+h4 { font-size: 1.25rem; }
+
+p {
+  color: var(--cream-dim);
+  margin-bottom: 1.2em;
+}
+
+a {
+  color: var(--gold-mid);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--gold-bright);
+}
+
+em {
+  color: var(--cream);
+  font-style: italic;
+}
+
+strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+blockquote {
+  border-left: 2px solid var(--gold-dim);
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  font-style: italic;
+  color: var(--cream-muted);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy-deepest);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-mid);
+}
+
+/* ─── Decorative: Corner Filigree ───────────────────────── */
+
+.filigree-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.filigree-corner.tl { top: 0; left: 0; }
+.filigree-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.filigree-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.filigree-corner.br { bottom: 0; right: 0; transform: scale(-1); }
+
+/* ─── Gold divider ──────────────────────────────────────── */
+
+.gold-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+.gold-divider-icon {
+  color: var(--gold-dim);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+}
+
+/* ─── Cards ─────────────────────────────────────────────── */
+
+.lore-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.lore-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 106, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.lore-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+  background: var(--navy-light);
+}
+
+.lore-card .card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold-mid);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+.lore-card .card-meta {
+  font-size: 0.8rem;
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ─── Lore entry prose ──────────────────────────────────── */
+
+.lore-prose h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.lore-prose h3 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  color: var(--gold-warm);
+}
+
+.lore-prose ul, .lore-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--cream-dim);
+}
+
+.lore-prose li {
+  margin-bottom: 0.3rem;
+}
+
+/* ─── Spoiler tag ───────────────────────────────────────── */
+
+.spoiler-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  background: rgba(139, 32, 32, 0.2);
+  border: 1px solid rgba(196, 64, 64, 0.3);
+  color: var(--red-bright);
+}
+
+.safe-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  background: rgba(32, 100, 60, 0.2);
+  border: 1px solid rgba(60, 160, 80, 0.3);
+  color: #70c080;
+}
+
+/* ─── Nav ───────────────────────────────────────────────── */
+
+.site-nav {
+  background: rgba(13, 13, 26, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  transition: color 0.2s ease;
+  padding: 0.4rem 0;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold-mid);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold-mid);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ─── Category pill ─────────────────────────────────────── */
+
+.category-pill {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--gold-dim);
+  background: rgba(212, 175, 106, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.category-pill:hover,
+.category-pill.active {
+  border-color: var(--gold-mid);
+  color: var(--gold-mid);
+  background: rgba(212, 175, 106, 0.1);
+}
+
+/* ─── Page layout helpers ───────────────────────────────── */
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.page-header {
+  padding: 3rem 0 2rem;
+  position: relative;
+}
+
+.page-header .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.6rem;
+}
+
+/* ─── Infobox (lore sidebar) ────────────────────────────── */
+
+.infobox {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold-dim);
+  padding: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.infobox-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-mid);
+  text-align: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+}
+
+.infobox-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.infobox-row .label {
+  color: var(--cream-muted);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.infobox-row .value {
+  color: var(--cream-dim);
+}
+
+/* ─── Tag list ──────────────────────────────────────────── */
+
+.tag {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border);
+  color: var(--cream-muted);
+  border-radius: 1px;
+}
+
+/* ─── Selection ─────────────────────────────────────────── */
+
+::selection {
+  background: rgba(212, 175, 106, 0.2);
+  color: var(--cream);
 }
