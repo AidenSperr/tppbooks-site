@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import './globals.css'
+import NavBar from '@/components/NavBar'
 
 export const metadata: Metadata = {
   title: 'The World of Nasariane',
@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     siteName: 'TPP Books',
   },
 }
-
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/series/tpp', label: 'Series' },
-  { href: '/lore', label: 'Lore' },
-  { href: '/map', label: 'Map' },
-  { href: '/about', label: 'About' },
-]
 
 // SVG filigree corner — a simple ornamental bracket
 function FiligreeSvg() {
@@ -48,53 +40,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {/* ── Navigation ─────────────────────────────────── */}
-        <header className="site-nav">
-          <div className="page-container">
-            <nav
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                height: '60px',
-              }}
-            >
-              {/* Wordmark */}
-              <Link
-                href="/"
-                style={{
-                  fontFamily: "'Cinzel Decorative', serif",
-                  fontSize: '0.95rem',
-                  letterSpacing: '0.1em',
-                  color: 'var(--gold-mid)',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                TPP Books
-              </Link>
-
-              {/* Nav links */}
-              <ul
-                style={{
-                  display: 'flex',
-                  gap: '2rem',
-                  listStyle: 'none',
-                  margin: 0,
-                  padding: 0,
-                }}
-              >
-                {NAV_LINKS.map(({ href, label }) => (
-                  <li key={href}>
-                    <Link href={href} className="nav-link">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </header>
+        <NavBar />
 
         {/* ── Main content ───────────────────────────────── */}
         <main>{children}</main>

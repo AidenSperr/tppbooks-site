@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html, body {
+    background-color: var(--navy-deep) !important;
+    color: var(--cream) !important;
+  }
+}
+
 :root {
   /* Core palette */
   --navy-deepest: #0d0d1a;
@@ -165,6 +175,7 @@ hr {
 .gold-divider-icon {
   color: var(--gold-dim);
   font-size: 1rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
 }
 
@@ -197,6 +208,7 @@ hr {
 .lore-card .card-title {
   font-family: 'Cinzel', serif;
   font-size: 1rem;
+  font-weight: 600;
   color: var(--gold-mid);
   margin-bottom: 0.35rem;
   letter-spacing: 0.04em;
@@ -204,6 +216,7 @@ hr {
 
 .lore-card .card-meta {
   font-size: 0.8rem;
+  font-weight: 600;
   color: var(--cream-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -242,6 +255,7 @@ hr {
   gap: 0.35rem;
   font-family: 'Cinzel', serif;
   font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.25rem 0.6rem;
@@ -257,6 +271,7 @@ hr {
   gap: 0.35rem;
   font-family: 'Cinzel', serif;
   font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.25rem 0.6rem;
@@ -274,10 +289,31 @@ hr {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
   z-index: 100;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: relative;
+}
+
+.nav-wordmark {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-mid);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -285,12 +321,14 @@ hr {
 .nav-link {
   font-family: 'Cinzel', serif;
   font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cream-muted);
   transition: color 0.2s ease;
   padding: 0.4rem 0;
   position: relative;
+  text-decoration: none;
 }
 
 .nav-link::after {
@@ -306,13 +344,80 @@ hr {
 }
 
 .nav-link:hover,
-.nav-link.active {
-  color: var(--gold-mid);
+.nav-link-active {
+  color: var(--gold-bright);
 }
 
 .nav-link:hover::after,
-.nav-link.active::after {
+.nav-link-active::after {
   transform: scaleX(1);
+}
+
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none !important;
+  flex-direction: column;
+  gap: 5px;
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 101;
+}
+
+.nav-hamburger span {
+  display: block !important;
+  width: 22px !important;
+  height: 2px !important;
+  background: var(--gold-mid) !important;
+  border-radius: 0 !important;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex !important;
+  }
+
+  .nav-links {
+    display: none !important;
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    list-style: none !important;
+    background: rgba(13, 13, 26, 0.97) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 0.5rem 0 !important;
+    margin: 0 !important;
+  }
+
+  .nav-links.open {
+    display: flex !important;
+  }
+
+  .nav-links li {
+    width: 100% !important;
+    list-style: none !important;
+  }
+
+  .nav-link {
+    display: block !important;
+    padding: 0.85rem 1.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .nav-link::after {
+    display: none !important;
+  }
+
+  .nav-link-active {
+    color: var(--gold-bright) !important;
+    background: rgba(212, 175, 106, 0.07) !important;
+  }
 }
 
 /* ─── Category pill ─────────────────────────────────────── */
@@ -320,6 +425,7 @@ hr {
 .category-pill {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
@@ -354,6 +460,7 @@ hr {
 .page-header .eyebrow {
   font-family: 'Cinzel', serif;
   font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold-dim);
@@ -373,6 +480,7 @@ hr {
 .infobox-title {
   font-family: 'Cinzel', serif;
   font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gold-mid);
   text-align: center;
@@ -390,6 +498,7 @@ hr {
 
 .infobox-row .label {
   color: var(--cream-muted);
+  font-weight: 600;
   min-width: 90px;
   flex-shrink: 0;
 }
@@ -404,6 +513,7 @@ hr {
   display: inline-block;
   font-family: 'Cinzel', serif;
   font-size: 0.65rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.15rem 0.5rem;

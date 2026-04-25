@@ -253,7 +253,7 @@ export default function HomePage() {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div className="section-rule" />
             <h2 className="ornamented-heading" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', display: 'inline-block' }}>
-              The Trilogy
+              The Polaenian Prophecies Trilogy
             </h2>
           </div>
 
