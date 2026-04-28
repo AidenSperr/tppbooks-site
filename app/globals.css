@@ -378,6 +378,7 @@ hr {
 @media (max-width: 768px) {
   .nav-hamburger {
     display: flex !important;
+    visibility: visible !important;
   }
 
   .nav-links {

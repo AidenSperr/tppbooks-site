@@ -10,7 +10,7 @@ const BOOKS = [
     spineColor: '#1a1a2e',
     accentColor: '#d4af6a',
     borderColor: 'rgba(212,175,106,0.45)',
-    tagline: 'The prophecy begins with two unlikely sojourners.',
+    tagline: 'The prophecies begin with two unlikely sojourners.',
     synopsis: `Within the lands of Alatryan continent, there existed ten Gems, forged by the holy powers known as the Eleven. These Gems allowed the mortal beings of Alatrya to use the ten elements, catalysts with unlimited mana and power, brought into the world with the intention to be used for good and prosperity.
 
     But when a powerful Demon named Huolong discovered information about the Gem of Kashtet, the God of Fire, he desired its infinite strength for himself. When he finally discovered the Gem with the help of the Dragonkinnian sailor, Vakviva Evvuniav, he stole it from the rightful place in the land, absorbing its might.
@@ -54,7 +54,7 @@ const BOOKS = [
     spineColor: '#0a1a0a',
     accentColor: '#4a8a4a',
     borderColor: 'rgba(74,138,74,0.45)',
-    tagline: 'What survives the prophecy must become something new.',
+    tagline: 'What survives the prophecies must become something new.',
     synopsis: `The final volume of The Polaenian Prophecies. Details forthcoming.`,
     details: [
       { label: 'Status', value: 'In Progress' },
