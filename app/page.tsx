@@ -36,10 +36,11 @@ const BOOKS = [
 ]
 
 const FEATURED_CATEGORIES = [
-  { slug: 'people-of-importance', label: 'People of Importance', icon: '👤' },
-  { slug: 'holy-beings', label: 'Holy Beings', icon: '✦' },
-  { slug: 'nations', label: 'Nations', icon: '⚑' },
-  { slug: 'elements', label: 'Elements', icon: '◈' },
+  { slug: 'people-of-importance', label: 'People of Importance' },
+  { slug: 'holy-beings', label: 'Holy Beings' },
+  { slug: 'nations', label: 'Nations' },
+  { slug: 'elements', label: 'Elements' },
+  { slug: 'races', label: 'Races' },
 ]
 
 export default function HomePage() {
@@ -349,33 +350,49 @@ export default function HomePage() {
           {/* Category cards */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(5, 1fr)',
             gap: '1rem',
             marginBottom: '2.5rem',
           }}>
-            {FEATURED_CATEGORIES.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/lore`}
-                className="lore-category-card"
-              >
-                <div style={{
-                  fontSize: '1.2rem',
-                  marginBottom: '0.6rem',
-                  color: 'var(--gold-dim)',
-                }}>
-                  {cat.icon}
-                </div>
-                <div style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.06em',
-                  color: 'var(--gold-mid)',
-                }}>
-                  {cat.label}
-                </div>
-              </Link>
-            ))}
+            {FEATURED_CATEGORIES.map((cat) => {
+              const count = entries.filter(e => e.category === cat.slug).length
+              return (
+                <Link
+                  key={cat.slug}
+                  href={`/lore/${cat.slug}`}
+                  className="lore-category-card"
+                >
+                  <div style={{
+                    fontFamily: "'Cinzel', serif",
+                    fontSize: '1.4rem',
+                    fontWeight: 700,
+                    color: 'var(--gold-dim)',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.02em',
+                  }}>
+                    {count}
+                  </div>
+                  <div style={{
+                    fontFamily: "'Cinzel', serif",
+                    fontSize: '0.78rem',
+                    letterSpacing: '0.06em',
+                    color: 'var(--gold-mid)',
+                    lineHeight: 1.35,
+                  }}>
+                    {cat.label}
+                  </div>
+                  <div style={{
+                    marginTop: '0.5rem',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: 'var(--cream-muted)',
+                  }}>
+                    entries
+                  </div>
+                </Link>
+              )
+            })}
           </div>
 
           <div style={{ textAlign: 'center' }}>

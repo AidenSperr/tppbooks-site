@@ -186,7 +186,7 @@ hr {
   border: 1px solid var(--border);
   border-radius: 2px;
   padding: 1.25rem 1.5rem;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   position: relative;
   overflow: hidden;
 }
@@ -520,6 +520,185 @@ hr {
   border: 1px solid var(--border);
   color: var(--cream-muted);
   border-radius: 1px;
+}
+
+/* ─── Category nav tile ───────────────────────────────────── */
+
+.category-nav-tile {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: rgba(212, 175, 106, 0.04);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--gold-dim);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-nav-tile:hover {
+  border-color: var(--border-bright);
+  color: var(--gold-mid);
+  background: rgba(212, 175, 106, 0.09);
+}
+
+/* ─── Page transition ──────────────────────────────────── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-up { animation: fadeUp 0.8s ease both; }
+.fade-in { animation: fadeIn 1.2s ease both; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.35s; }
+.d4 { animation-delay: 0.5s; }
+.d5 { animation-delay: 0.65s; }
+
+/* ─── Compact lore grid ─────────────────────────────────── */
+
+.lore-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+  overflow: visible;
+}
+
+/* Ensure Link wrappers inside lore-grid don't clip */
+.lore-grid > a {
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+}
+
+.lore-grid > a:hover {
+  z-index: 10;
+}
+
+@media (max-width: 1100px) {
+  .lore-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 820px) {
+  .lore-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .lore-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Compact card variant */
+.lore-card-compact {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.7rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.lore-card-compact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 106, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.lore-card-compact:hover {
+  border-color: var(--border-bright);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  background: var(--navy-light);
+}
+
+.lore-card-compact .card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold-mid);
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  margin-bottom: 0.2rem;
+}
+
+.lore-card-compact .card-meta {
+  font-size: 0.68rem;
+  color: var(--cream-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Spoiler indicator dot ───────────────────────────────── */
+
+.spoiler-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+.spoiler-dot--safe {
+  background: rgba(74, 160, 90, 0.25);
+  color: #6dba80;
+  border: 1px solid rgba(74, 160, 90, 0.4);
+}
+
+.spoiler-dot--warn {
+  background: rgba(190, 60, 60, 0.25);
+  color: #d97070;
+  border: 1px solid rgba(190, 60, 60, 0.4);
+}
+
+/* Tooltip */
+.spoiler-dot::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  white-space: nowrap;
+  background: var(--navy-deepest);
+  border: 1px solid var(--border-bright);
+  color: var(--cream-dim);
+  font-family: 'Crimson Text', serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 9999;
+}
+
+.spoiler-dot:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ─── Selection ─────────────────────────────────────────── */

@@ -8,8 +8,10 @@ import Link from 'next/link'
 interface LoreEntry {
   slug: string
   category: string
+  slugPath: string[]
+  title: string
   frontmatter: {
-    title: string
+    title?: string
     type?: string
     tags?: string[]
     spoilerFree?: boolean
@@ -63,7 +65,7 @@ export default function LorePage() {
     const q = search.toLowerCase()
     const matchSearch =
       !q ||
-      e.frontmatter.title.toLowerCase().includes(q) ||
+      e.title.toLowerCase().includes(q) ||
       e.category.toLowerCase().includes(q) ||
       (e.frontmatter.tags ?? []).some((t) => t.toLowerCase().includes(q))
     return matchCat && matchSearch
@@ -80,7 +82,7 @@ export default function LorePage() {
     <div className="page-container" style={{ paddingBottom: '5rem' }}>
 
       {/* ── Page header ───────────────────────────────── */}
-      <div className="page-header">
+      <div className="page-header fade-up d1">
         <p className="eyebrow">World of Nasariane</p>
         <h1 style={{ marginBottom: '0.5rem' }}>Lore Compendium</h1>
         <p style={{ maxWidth: '560px', fontSize: '1.05rem', marginBottom: 0 }}>
@@ -94,8 +96,34 @@ export default function LorePage() {
         </div>
       </div>
 
+      {/* ── Browse by category ────────────────────────── */}
+      <section className="fade-up d2" style={{ marginBottom: '2.5rem' }}>
+        <h2
+          style={{
+            fontSize: '0.7rem',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'var(--gold-dim)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '0.5rem',
+            marginBottom: '1rem',
+          }}
+        >
+          Browse by Category
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '0.5rem' }}>
+          {Object.entries(CATEGORY_LABELS)
+            .sort(([, a], [, b]) => a.localeCompare(b))
+            .map(([key, label]) => (
+              <Link key={key} href={`/lore/${key}`} style={{ textDecoration: 'none' }}>
+                <div className="category-nav-tile">{label}</div>
+              </Link>
+            ))}
+        </div>
+      </section>
+
       {/* ── Search ────────────────────────────────────── */}
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className="fade-up d3" style={{ marginBottom: '1.5rem' }}>
         <input
           type="text"
           placeholder="Search entries…"
@@ -121,6 +149,7 @@ export default function LorePage() {
 
       {/* ── Category filter pills ──────────────────────── */}
       <div
+        className="fade-up d3"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -146,6 +175,7 @@ export default function LorePage() {
       </div>
 
       {/* ── Entry grid ────────────────────────────────── */}
+      <div className="fade-up d4">
       {Object.keys(grouped).length === 0 ? (
         <p style={{ color: 'var(--cream-muted)', textAlign: 'center', marginTop: '4rem' }}>
           No entries found.
@@ -169,51 +199,25 @@ export default function LorePage() {
                 {CATEGORY_LABELS[cat] ?? cat}
               </h2>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                  gap: '1rem',
-                }}
-              >
+              <div className="lore-grid">
                 {catEntries
-                  .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title))
+                  .sort((a, b) => a.title.localeCompare(b.title))
                   .map((entry) => (
                     <Link
-                      key={entry.slug}
-                      href={`/lore/${entry.category}/${entry.slug}`}
+                      key={`${entry.category}-${entry.slugPath.join('-')}`}
+                      href={`/lore/${entry.category}/${entry.slugPath.join('/')}`}
                       style={{ textDecoration: 'none' }}
                     >
-                      <div className="lore-card">
-                        <div className="card-title">{entry.frontmatter.title}</div>
-                        {entry.frontmatter.pronunciation && (
-                          <div
-                            style={{
-                              fontStyle: 'italic',
-                              fontSize: '0.8rem',
-                              color: 'var(--cream-muted)',
-                              marginBottom: '0.3rem',
-                            }}
+                      <div className="lore-card-compact">
+                        <div className="card-title">{entry.title}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem' }}>
+                          <span className="card-meta">{entry.frontmatter.type ?? CATEGORY_LABELS[cat]}</span>
+                          <span
+                            className={`spoiler-dot ${entry.frontmatter.spoilerFree ? 'spoiler-dot--safe' : 'spoiler-dot--warn'}`}
+                            data-tooltip={entry.frontmatter.spoilerFree ? 'Spoiler-free' : 'Contains spoilers'}
                           >
-                            {entry.frontmatter.pronunciation}
-                          </div>
-                        )}
-                        <div
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            marginTop: '0.5rem',
-                          }}
-                        >
-                          <span className="card-meta">
-                            {entry.frontmatter.type ?? CATEGORY_LABELS[cat]}
+                            {entry.frontmatter.spoilerFree ? '✓' : '!'}
                           </span>
-                          {entry.frontmatter.spoilerFree ? (
-                            <span className="safe-badge">Spoiler Free</span>
-                          ) : (
-                            <span className="spoiler-badge">Spoilers</span>
-                          )}
                         </div>
                       </div>
                     </Link>
@@ -222,6 +226,7 @@ export default function LorePage() {
             </section>
           ))
       )}
+      </div>
     </div>
   )
 }
