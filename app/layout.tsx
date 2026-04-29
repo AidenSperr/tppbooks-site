@@ -63,7 +63,7 @@ export default function RootLayout({
               textAlign: 'center',
             }}
           >
-            <span
+            <h4
               style={{
                 fontFamily: "'Cinzel Decorative', serif",
                 fontSize: '0.8rem',
@@ -72,7 +72,7 @@ export default function RootLayout({
               }}
             >
               TPP Books
-            </span>
+            </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--cream-muted)', margin: 0 }}>
               The World of Nasariane © {new Date().getFullYear()} · All rights reserved
             </p>

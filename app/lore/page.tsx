@@ -211,13 +211,13 @@ export default function LorePage() {
                       <div className="lore-card-compact">
                         <div className="card-title">{entry.title}</div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem' }}>
-                          <span className="card-meta">{entry.frontmatter.type ?? CATEGORY_LABELS[cat]}</span>
-                          <span
+                          <h4 className="card-meta">{entry.frontmatter.type ?? CATEGORY_LABELS[cat]}</h4>
+                          <h4
                             className={`spoiler-dot ${entry.frontmatter.spoilerFree ? 'spoiler-dot--safe' : 'spoiler-dot--warn'}`}
                             data-tooltip={entry.frontmatter.spoilerFree ? 'Spoiler-free' : 'Contains spoilers'}
                           >
                             {entry.frontmatter.spoilerFree ? '✓' : '!'}
-                          </span>
+                          </h4>
                         </div>
                       </div>
                     </Link>

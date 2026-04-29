@@ -168,7 +168,7 @@ export default function MapPage() {
           background: var(--navy-mid) !important; border: 1px solid var(--border) !important;
           border-radius: 2px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; padding: 0 !important;
         }
-        .leaflet-popup-content { margin: 0.75rem 1rem !important; color: var(--cream-dim) !important; }
+        .leaflet-popup-content { margin: 0.75rem 1rem !important; color: var(--cream-dim) !important; font-weight: 600 !important; }
         .leaflet-popup-tip { background: var(--navy-mid) !important; }
         .leaflet-popup-close-button { color: var(--gold-dim) !important; font-size: 1rem !important; padding: 0px !important; }
         .leaflet-popup-close-button:hover { color: var(--gold-bright) !important; background: none !important; }

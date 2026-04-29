@@ -10,7 +10,7 @@ const BOOKS = [
     spineColor: '#1a1a2e',
     accentColor: '#d4af6a',
     borderColor: 'rgba(212,175,106,0.45)',
-    tagline: 'The prophecy begins with two unlikely sojourners.',
+    tagline: 'The prophecies begin with two unlikely sojourners.',
     synopsis: `Within the lands of Alatryan continent, there existed ten Gems, forged by the holy powers known as the Eleven. These Gems allowed the mortal beings of Alatrya to use the ten elements, catalysts with unlimited mana and power, brought into the world with the intention to be used for good and prosperity.
 
     But when a powerful Demon named Huolong discovered information about the Gem of Kashtet, the God of Fire, he desired its infinite strength for himself. When he finally discovered the Gem with the help of the Dragonkinnian sailor, Vakviva Evvuniav, he stole it from the rightful place in the land, absorbing its might.
@@ -54,7 +54,7 @@ const BOOKS = [
     spineColor: '#0a1a0a',
     accentColor: '#4a8a4a',
     borderColor: 'rgba(74,138,74,0.45)',
-    tagline: 'What survives the prophecy must become something new.',
+    tagline: 'What survives the prophecies must become something new.',
     synopsis: `The final volume of The Polaenian Prophecies. Details forthcoming.`,
     details: [
       { label: 'Status', value: 'In Progress' },
@@ -81,10 +81,10 @@ export default function TPPSeriesPage() {
           display: inline-block;
           font-family: 'Cinzel', serif;
           font-size: 0.72rem;
-          font-weight: bold;
+          font-weight: 600;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          padding: 0.7rem 1.75rem;
+          padding: 0.8rem 2rem;
           border: 1px solid var(--gold-mid);
           color: var(--navy-deepest);
           background: var(--gold-mid);
@@ -121,6 +121,24 @@ export default function TPPSeriesPage() {
         }
         .book-spine-tall:hover { transform: translateY(-4px); }
 
+        .cta-btn {
+          display: inline-block;
+          font-family: 'Cinzel', serif;
+          font-size: 0.75rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          padding: 0.8rem 2rem;
+          border: 1px solid var(--gold-mid);
+          color: var(--gold-mid);
+          background: transparent;
+          transition: background 0.25s ease, color 0.25s ease;
+          text-decoration: none;
+        }
+        .cta-btn:hover {
+          background: var(--gold-mid);
+          color: var(--navy-deepest);
+        }
+
         .detail-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -131,26 +149,13 @@ export default function TPPSeriesPage() {
         .detail-item .dl {
           font-family: 'Cinzel', serif;
           font-size: 0.6rem;
+          font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: var(--cream-muted);
           margin-bottom: 0.2rem;
         }
         .detail-item .dv { font-size: 0.9rem; color: var(--cream-dim); }
-
-        .ghost-link {
-          font-family: 'Cinzel', serif;
-          font-size: 0.72rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          padding: 0.7rem 1.75rem;
-          border: 1px solid rgba(212,175,106,0.3);
-          color: var(--cream-muted);
-          text-decoration: none;
-          transition: all 0.2s;
-          display: inline-block;
-        }
-        .ghost-link:hover { border-color: var(--gold-mid); color: var(--gold-mid); }
       `}</style>
 
       <div className="page-container" style={{ paddingBottom: '5rem' }}>
@@ -188,6 +193,7 @@ export default function TPPSeriesPage() {
           <p style={{
             fontSize: '0.75rem',
             fontFamily: "'Cinzel', serif",
+            fontWeight: 600,
             letterSpacing: '0.1em',
             color: 'var(--gold-dim)',
             margin: '0.75rem 0 0',
@@ -212,37 +218,40 @@ export default function TPPSeriesPage() {
                   opacity: book.status === 'available' ? 1 : 0.65,
                 }}
               >
-                <span style={{
+                <h4 style={{
                   fontFamily: "'Cinzel', serif",
                   fontSize: '0.6rem',
                   letterSpacing: '0.15em',
                   color: book.accentColor,
-                  opacity: 0.8,
+                  opacity: 0.7,
                 }}>
                   BOOK {book.number}
-                </span>
+                </h4>
                 <div style={{ textAlign: 'center' }}>
+                  <div style={{ width: '20px', height: '1px', background: book.accentColor, margin: '0 auto', opacity: 0.5 }} />
                   <div style={{
                     fontFamily: "'Cinzel', serif",
                     fontSize: '0.72rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.06em',
                     color: book.accentColor,
-                    lineHeight: 1.5,
-                    letterSpacing: '0.04em',
-                    marginBottom: '0.5rem',
+                    lineHeight: 1.4,
+                    marginTop: '0.4rem',
+                    marginBottom: '0.4rem',
                   }}>
                     {book.title}
                   </div>
-                  <div style={{ width: '20px', height: '1px', background: book.accentColor, margin: '0 auto', opacity: 0.4 }} />
+                  <div style={{ width: '20px', height: '1px', background: book.accentColor, margin: '0 auto', opacity: 0.5 }} />
                 </div>
-                <span style={{
+                <h4 style={{
                   fontFamily: "'Cinzel', serif",
                   fontSize: '0.5rem',
-                  letterSpacing: '0.1em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: book.status === 'available' ? book.accentColor : 'rgba(255,255,255,0.2)',
+                  color: book.accentColor,
                 }}>
-                  {book.status === 'available' ? 'Available' : 'Coming Soon'}
-                </span>
+                  Available
+                </h4>
               </div>
 
               {/* Content */}
@@ -250,6 +259,7 @@ export default function TPPSeriesPage() {
                 <p style={{
                   fontFamily: "'Cinzel', serif",
                   fontSize: '0.65rem',
+                  fontWeight: 600,
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   color: 'var(--gold-dim)',
@@ -292,6 +302,7 @@ export default function TPPSeriesPage() {
                   <span style={{
                     fontFamily: "'Cinzel', serif",
                     fontSize: '0.7rem',
+                    fontWeight: 600,
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--cream-muted)',
@@ -311,6 +322,7 @@ export default function TPPSeriesPage() {
           <p style={{
             fontFamily: "'Cinzel', serif",
             fontSize: '0.65rem',
+            fontWeight: 600,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             color: 'var(--gold-dim)',
@@ -320,7 +332,7 @@ export default function TPPSeriesPage() {
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/lore" className="buy-btn">Lore Compendium</Link>
-            <Link href="/map" className="ghost-link">World Map</Link>
+            <Link href="/map" className="cta-btn">World Map</Link>
           </div>
         </div>
 

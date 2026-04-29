@@ -164,11 +164,11 @@ export default async function LoreCatchAllPage({ params }: PageProps) {
         <nav className="fade-up d1" style={{ paddingTop: '1.5rem', marginBottom: '1rem', fontSize: '0.8rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', color: 'var(--cream-muted)', fontFamily: "'Cinzel', serif", letterSpacing: '0.06em' }}>
           {breadcrumbs.slice(0, -1).map((crumb, i) => (
             <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Link href={crumb.href} style={{ color: 'var(--cream-muted)' }}>{crumb.label}</Link>
-              <span>›</span>
+              <Link href={crumb.href} style={{ color: 'var(--cream-muted)', fontWeight: 600 }}>{crumb.label}</Link>
+              <span style={{ fontWeight: 600 }}>›</span>
             </span>
           ))}
-          <span style={{ color: 'var(--gold-dim)' }}>{currentLabel}</span>
+          <span style={{ color: 'var(--gold-dim)', fontWeight: 600 }}>{currentLabel}</span>
         </nav>
 
         {/* Header */}
@@ -227,14 +227,14 @@ export default async function LoreCatchAllPage({ params }: PageProps) {
         )}
 
         {sortedDirs.length === 0 && sortedFiles.length === 0 && (
-          <p style={{ color: 'var(--cream-muted)', textAlign: 'center', marginTop: '4rem' }}>
+          <p style={{ color: 'var(--cream-muted)', textAlign: 'center', marginTop: '4rem', fontWeight: 600 }}>
             No entries found in this section.
           </p>
         )}
 
         {/* Back link */}
         <div style={{ marginTop: '3rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
-          <Link href={breadcrumbs[breadcrumbs.length - 2].href} style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}>
+          <Link href={breadcrumbs[breadcrumbs.length - 2].href} style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}>
             ← Back to {breadcrumbs[breadcrumbs.length - 2].label}
           </Link>
         </div>
@@ -270,11 +270,11 @@ export default async function LoreCatchAllPage({ params }: PageProps) {
       <nav className="fade-up d1" style={{ paddingTop: '1.5rem', marginBottom: '1rem', fontSize: '0.8rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', color: 'var(--cream-muted)', fontFamily: "'Cinzel', serif", letterSpacing: '0.06em' }}>
         {breadcrumbs.map((crumb, i) => (
           <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Link href={crumb.href} style={{ color: 'var(--cream-muted)' }}>{crumb.label}</Link>
-            <span>›</span>
+            <Link href={crumb.href} style={{ color: 'var(--cream-muted)', fontWeight: 600 }}>{crumb.label}</Link>
+            <span style={{ fontWeight: 600 }}>›</span>
           </span>
         ))}
-        <span style={{ color: 'var(--cream-dim)' }}>{title}</span>
+        <span style={{ color: 'var(--cream-dim)', fontWeight: 600 }}>{title}</span>
       </nav>
 
       {/* Layout */}
@@ -285,7 +285,7 @@ export default async function LoreCatchAllPage({ params }: PageProps) {
         {/* Main content */}
         <article>
           <header style={{ marginBottom: '2rem' }}>
-            <p style={{ fontFamily: "'Cinzel', serif", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold-dim)', marginBottom: '0.5rem' }}>
+            <p style={{ fontFamily: "'Cinzel', serif", fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold-dim)', marginBottom: '0.5rem' }}>
               {categoryLabel}
             </p>
             <h1 style={{ marginBottom: '0.25rem' }}>{title}</h1>
@@ -333,7 +333,7 @@ export default async function LoreCatchAllPage({ params }: PageProps) {
       <div style={{ marginTop: '3rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
         <Link
           href={slugPath.length > 1 ? `/lore/${category}/${slugPath.slice(0, -1).join('/')}` : `/lore/${category}`}
-          style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}
+          style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}
         >
           ← Back to {slugPath.length > 1 ? folderLabel(slugPath[slugPath.length - 2]) : categoryLabel}
         </Link>

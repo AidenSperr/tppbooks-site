@@ -1,39 +1,7 @@
 import Link from 'next/link'
 import { getAllLoreEntries } from '@/lib/lore'
-
-// Book data — update titles/subtitles as needed
-const BOOKS = [
-  {
-    number: 'I',
-    title: 'Two Elven Sojourners',
-    subtitle: 'Book One',
-    spineColor: '#1a1a2e',
-    spineAccent: '#d4af6a',
-    textColor: '#d4af6a',
-    borderColor: 'rgba(212,175,106,0.4)',
-    available: true,
-  },
-  {
-    number: 'II',
-    title: 'Daughter of Ruin',
-    subtitle: 'Book Two',
-    spineColor: '#2a0a0a',
-    spineAccent: '#c44040',
-    textColor: '#e08080',
-    borderColor: 'rgba(196,64,64,0.4)',
-    available: false,
-  },
-  {
-    number: 'III',
-    title: 'A New Era',
-    subtitle: 'Book Three',
-    spineColor: '#0a1a0a',
-    spineAccent: '#4a8a4a',
-    textColor: '#80c080',
-    borderColor: 'rgba(74,138,74,0.4)',
-    available: false,
-  },
-]
+import HomeCarousel from '@/components/BookCarousel'
+import MagicBackground from '@/components/MagicBackground'
 
 const FEATURED_CATEGORIES = [
   { slug: 'people-of-importance', label: 'People of Importance' },
@@ -98,6 +66,7 @@ export default function HomePage() {
           display: inline-block;
           font-family: 'Cinzel', serif;
           font-size: 0.75rem;
+          font-weight: 600;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           padding: 0.8rem 2rem;
@@ -151,6 +120,8 @@ export default function HomePage() {
         }
       `}</style>
 
+      <MagicBackground />
+
       {/* ═══════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════ */}
@@ -179,7 +150,7 @@ export default function HomePage() {
         }} />
 
         {/* Eyebrow */}
-        <p className="fade-up d1" style={{
+        <h4 className="fade-up d1" style={{
           fontFamily: "'Cinzel', serif",
           fontSize: '0.8rem',
           letterSpacing: '0.3em',
@@ -188,7 +159,7 @@ export default function HomePage() {
           marginBottom: '0.75rem',
         }}>
           The World of
-        </p>
+        </h4>
 
         {/* Main title */}
         <h1
@@ -209,11 +180,11 @@ export default function HomePage() {
         <div className="fade-up d3" style={{
           display: 'flex', alignItems: 'center', gap: '1rem',
           margin: '0.75rem auto',
-          width: 'min(340px, 80vw)',
+          width: 'min(400px, 80vw)',
         }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, var(--gold-dim))' }} />
-          <span style={{ color: 'var(--gold-dim)', fontSize: '0.8rem', letterSpacing: '0.2em', fontFamily: "'Cinzel', serif" }}>TPP SERIES</span>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, var(--gold-dim))' }} />
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, var(--gold-dim))', marginBottom: '3px' }} />
+          <h4 style={{ color: 'var(--gold-dim)', fontSize: '0.8rem', letterSpacing: '0.2em', fontFamily: "'Cinzel', serif" }}>TPP SERIES & MORE</h4>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, var(--gold-dim))', marginBottom: '3px' }} />
         </div>
 
         {/* Tagline */}
@@ -230,10 +201,9 @@ export default function HomePage() {
           For when all seems lost, when the world is crumbling, a hand will be upon your shoulder...
         </p>
 
-        {/* CTAs */}
+        {/* CTA */}
         <div className="fade-up d4" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link href="/lore" className="cta-btn">Explore the Lore</Link>
-          <Link href="/series/tpp" className="cta-btn cta-btn-ghost">The Series</Link>
         </div>
 
         {/* Scroll indicator */}
@@ -241,7 +211,7 @@ export default function HomePage() {
           position: 'absolute', bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem',
         }}>
-          <span style={{ fontFamily: "'Cinzel', serif", fontSize: '0.55rem', letterSpacing: '0.2em', color: 'var(--gold-dim)', textTransform: 'uppercase' }}>Scroll</span>
+          <h4 style={{ fontFamily: "'Cinzel', serif", fontSize: '0.55rem', letterSpacing: '0.2em', color: 'var(--gold-dim)', textTransform: 'uppercase' }}>Scroll</h4>
           <div style={{ width: '1px', height: '32px', background: 'linear-gradient(to bottom, var(--gold-dim), transparent)' }} />
         </div>
       </section>
@@ -251,78 +221,7 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section style={{ padding: '5rem 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div className="page-container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div className="section-rule" />
-            <h2 className="ornamented-heading" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', display: 'inline-block' }}>
-              The Polaenian Prophecies Trilogy
-            </h2>
-          </div>
-
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
-            gap: '1.5rem',
-            flexWrap: 'wrap',
-          }}>
-            {BOOKS.map((book) => (
-              <div
-                key={book.number}
-                className="book-spine"
-                style={{
-                  width: '160px',
-                  height: '240px',
-                  background: book.spineColor,
-                  border: `1px solid ${book.borderColor}`,
-                  borderTop: `3px solid ${book.spineAccent}`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '1.25rem 1rem',
-                  position: 'relative',
-                  boxShadow: `0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)`,
-                  opacity: book.available ? 1 : 0.55,
-                }}
-              >
-                {/* Roman numeral */}
-                <span style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.15em',
-                  color: book.spineAccent,
-                  opacity: 0.7,
-                }}>BOOK {book.number}</span>
-
-                {/* Title */}
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontFamily: "'Cinzel', serif",
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.06em',
-                    color: book.textColor,
-                    lineHeight: 1.4,
-                    marginBottom: '0.5rem',
-                  }}>
-                    {book.title}
-                  </div>
-                  {/* Decorative accent line */}
-                  <div style={{ width: '24px', height: '1px', background: book.spineAccent, margin: '0 auto', opacity: 0.5 }} />
-                </div>
-
-                {/* Available / Coming soon */}
-                <span style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: book.available ? book.spineAccent : 'rgba(255,255,255,0.2)',
-                }}>
-                  {book.available ? 'Available' : 'Coming Soon'}
-                </span>
-              </div>
-            ))}
-          </div>
+          <HomeCarousel />
         </div>
       </section>
 
@@ -332,7 +231,6 @@ export default function HomePage() {
       <section style={{ padding: '5rem 0' }}>
         <div className="page-container">
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div className="section-rule" />
             <h2 className="ornamented-heading" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', display: 'inline-block' }}>
               Lore Compendium
             </h2>
@@ -400,20 +298,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════════
-          BOTTOM ORNAMENT
-      ══════════════════════════════════════════════ */}
-      <div style={{
-        textAlign: 'center',
-        padding: '2rem 0 4rem',
-        color: 'var(--gold-dim)',
-        fontSize: '0.8rem',
-        letterSpacing: '0.3em',
-        fontFamily: "'Cinzel', serif",
-      }}>
-        ✦ &nbsp; ✦ &nbsp; ✦
-      </div>
     </>
   )
 }
