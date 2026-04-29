@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getAllLoreEntries } from '@/lib/lore'
 import HomeCarousel from '@/components/BookCarousel'
+import MagicBackground from '@/components/MagicBackground'
 
 const FEATURED_CATEGORIES = [
   { slug: 'people-of-importance', label: 'People of Importance' },
@@ -65,6 +66,7 @@ export default function HomePage() {
           display: inline-block;
           font-family: 'Cinzel', serif;
           font-size: 0.75rem;
+          font-weight: 600;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           padding: 0.8rem 2rem;
@@ -117,6 +119,8 @@ export default function HomePage() {
           vertical-align: middle;
         }
       `}</style>
+
+      <MagicBackground />
 
       {/* ═══════════════════════════════════════════════
           HERO

@@ -56,6 +56,11 @@
   padding: 0;
 }
 
+main {
+  position: relative;
+  z-index: 1;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -67,10 +72,29 @@ body {
   font-size: 18px;
   line-height: 1.7;
   min-height: 100vh;
-  /* Subtle star-field noise texture */
   background-image:
+    /* grain overlay */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 20% 10%, rgba(100, 80, 180, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 90%, rgba(180, 120, 40, 0.06) 0%, transparent 50%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at var(--gx, 30%) var(--gy, 20%), rgba(90, 60, 180, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 85%, rgba(160, 100, 20, 0.05) 0%, transparent 60%);
+  animation: ambientDrift 30s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0% { background-position: 0% 0%; opacity: 0.7; }
+  33% { opacity: 1; }
+  66% {opacity: 0.8; }
+  100% { background-position: 100% 100%; opacity: 0.7; }
 }
 
 /* ─── Typography ────────────────────────────────────────── */
