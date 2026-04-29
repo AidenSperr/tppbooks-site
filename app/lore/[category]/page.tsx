@@ -67,9 +67,9 @@ export default async function CategoryIndexPage({ params }: PageProps) {
 
       {/* Breadcrumb */}
       <nav className="fade-up d1" style={{ paddingTop: '1.5rem', marginBottom: '1rem', fontSize: '0.8rem', display: 'flex', gap: '0.5rem', color: 'var(--cream-muted)', fontFamily: "'Cinzel', serif", letterSpacing: '0.06em' }}>
-        <Link href="/lore" style={{ color: 'var(--cream-muted)' }}>Lore</Link>
-        <span>›</span>
-        <span style={{ color: 'var(--gold-dim)' }}>{categoryLabel}</span>
+        <Link href="/lore" style={{ color: 'var(--cream-muted)', fontWeight: 600 }}>Lore</Link>
+        <span style={{ fontWeight: 600 }}>›</span>
+        <span style={{ color: 'var(--gold-dim)', fontWeight: 600 }}>{categoryLabel}</span>
       </nav>
 
       {/* Header */}
@@ -122,14 +122,14 @@ export default async function CategoryIndexPage({ params }: PageProps) {
       )}
 
       {sortedDirs.length === 0 && sortedFiles.length === 0 && (
-        <p style={{ color: 'var(--cream-muted)', textAlign: 'center', marginTop: '4rem' }}>
+        <p style={{ color: 'var(--cream-muted)', textAlign: 'center', marginTop: '4rem', fontWeight: 600 }}>
           No entries found in this category.
         </p>
       )}
 
       {/* Back to compendium */}
       <div style={{ marginTop: '3rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
-        <Link href="/lore" style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}>
+        <Link href="/lore" style={{ fontFamily: "'Cinzel', serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold-dim)' }}>
           ← Back to Compendium
         </Link>
       </div>

@@ -160,7 +160,7 @@ function BookSpine({ book }: { book: BookSlide['books'][number] }) {
         flexShrink: 0,
       }}
     >
-      <span style={{
+      <h4 style={{
         fontFamily: "'Cinzel', serif",
         fontSize: '0.6rem',
         letterSpacing: '0.15em',
@@ -168,12 +168,13 @@ function BookSpine({ book }: { book: BookSlide['books'][number] }) {
         opacity: 0.7,
       }}>
         BOOK {book.number}
-      </span>
+      </h4>
       <div style={{ textAlign: 'center' }}>
         <div style={{ width: '20px', height: '1px', background: book.spineAccent, margin: '0 auto', opacity: 0.5 }} />
         <div style={{
           fontFamily: "'Cinzel', serif",
           fontSize: '0.72rem',
+          fontWeight: 600,
           letterSpacing: '0.06em',
           color: book.textColor,
           lineHeight: 1.4,
@@ -184,7 +185,7 @@ function BookSpine({ book }: { book: BookSlide['books'][number] }) {
         </div>
         <div style={{ width: '20px', height: '1px', background: book.spineAccent, margin: '0 auto', opacity: 0.5 }} />
       </div>
-      <span style={{
+      <h4 style={{
         fontFamily: "'Cinzel', serif",
         fontSize: '0.5rem',
         letterSpacing: '0.12em',
@@ -192,7 +193,7 @@ function BookSpine({ book }: { book: BookSlide['books'][number] }) {
         color: book.available ? book.spineAccent : 'rgba(255,255,255,0.2)',
       }}>
         {book.available ? 'Available' : 'Coming Soon'}
-      </span>
+      </h4>
     </Wrapper>
   )
 }

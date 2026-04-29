@@ -59,6 +59,40 @@ export default function AboutPage() {
           }
         }
 
+        .buy-btn {
+          display: inline-block;
+          font-family: 'Cinzel', serif;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          padding: 0.8rem 2rem;
+          border: 1px solid var(--gold-mid);
+          color: var(--navy-deepest);
+          background: var(--gold-mid);
+          transition: background 0.2s, color 0.2s;
+          text-decoration: none;
+        }
+        .buy-btn:hover { background: var(--gold-bright); }
+
+        .cta-btn {
+          display: inline-block;
+          font-family: 'Cinzel', serif;
+          font-size: 0.75rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          padding: 0.8rem 2rem;
+          border: 1px solid var(--gold-mid);
+          color: var(--gold-mid);
+          background: transparent;
+          transition: background 0.25s ease, color 0.25s ease;
+          text-decoration: none;
+        }
+        .cta-btn:hover {
+          background: var(--gold-mid);
+          color: var(--navy-deepest);
+        }
+
         .section-label {
           font-family: 'Cinzel', serif;
           font-size: 0.65rem;
@@ -199,41 +233,10 @@ export default function AboutPage() {
           gap: '1rem',
           flexWrap: 'wrap',
         }}>
-          <Link
-            href="/series/tpp"
-            style={{
-              fontFamily: "'Cinzel', serif",
-              fontSize: '0.72rem',
-              fontWeight: 600,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              padding: '0.7rem 1.75rem',
-              border: '1px solid var(--gold-mid)',
-              color: 'var(--navy-deepest)',
-              background: 'var(--gold-mid)',
-              textDecoration: 'none',
-              transition: 'background 0.2s',
-              display: 'inline-block',
-            }}
-          >
+          <Link href="/series/tpp" className="buy-btn">
             Read the Series
           </Link>
-          <Link
-            href="/lore"
-            style={{
-              fontFamily: "'Cinzel', serif",
-              fontSize: '0.72rem',
-              fontWeight: 600,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              padding: '0.7rem 1.75rem',
-              border: '1px solid rgba(212,175,106,0.3)',
-              color: 'var(--cream-muted)',
-              textDecoration: 'none',
-              transition: 'all 0.2s',
-              display: 'inline-block',
-            }}
-          >
+          <Link href="/lore" className="cta-btn">
             Explore the Lore
           </Link>
         </div>

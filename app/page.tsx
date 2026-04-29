@@ -176,10 +176,10 @@ export default function HomePage() {
         <div className="fade-up d3" style={{
           display: 'flex', alignItems: 'center', gap: '1rem',
           margin: '0.75rem auto',
-          width: 'min(340px, 80vw)',
+          width: 'min(400px, 80vw)',
         }}>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, var(--gold-dim))', marginBottom: '3px' }} />
-          <h4 style={{ color: 'var(--gold-dim)', fontSize: '0.8rem', letterSpacing: '0.2em', fontFamily: "'Cinzel', serif" }}>TPP SERIES</h4>
+          <h4 style={{ color: 'var(--gold-dim)', fontSize: '0.8rem', letterSpacing: '0.2em', fontFamily: "'Cinzel', serif" }}>TPP SERIES & MORE</h4>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, var(--gold-dim))', marginBottom: '3px' }} />
         </div>
 
